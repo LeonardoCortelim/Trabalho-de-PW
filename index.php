@@ -1,8 +1,9 @@
+<link rel="stylesheet" href="style.css">
+
 <?php
 session_start();
 require_once "conexao.php";
 
-// LOGIN ESTÁTICO
 $USER = "admin";
 $PASS = "123";
 
@@ -21,15 +22,16 @@ if (isset($_POST['login_user'])) {
 
 if (!isset($_SESSION['logged'])) {
 ?>
-<!-- FORMULÁRIO DE LOGIN -->
- 
 <h2>Login</h2>
+
 <form method="POST">
-    <input type="text" name="login_user" placeholder="Usuário"><br><br>
-    <input type="password" name="login_pass" placeholder="Senha"><br><br>
+    <input type="text" name="login_user" placeholder="Usuário"><br>
+    <input type="password" name="login_pass" placeholder="Senha"><br>
     <button>Entrar</button>
 </form>
+
 <p style="color:red;"><?= $erro_login ?? '' ?></p>
+
 <?php
 exit();
 }
@@ -39,16 +41,18 @@ exit();
 <a href="?logout=1">Sair</a>
 
 <h3>Cadastrar Usuário</h3>
+
 <form method="POST" action="criar.php">
-    <input type="text" name="nome" placeholder="Nome" required><br><br>
-    <input type="email" name="email" placeholder="Email" required><br><br>
-    <input type="date" name="data_nascimento" required><br><br>
-    <input type="password" name="senha" placeholder="Senha" required><br><br>
+    <input type="text" name="nome" placeholder="Nome" required><br>
+    <input type="email" name="email" placeholder="Email" required><br>
+    <input type="date" name="data_nascimento" required><br>
+    <input type="password" name="senha" placeholder="Senha" required><br>
     <button>Cadastrar</button>
 </form>
 
 <h3>Lista de Usuários</h3>
-<table border="1" cellpadding="5">
+
+<table>
 <tr>
     <th>ID</th>
     <th>Nome</th>
@@ -66,9 +70,8 @@ while ($u = $lista->fetch_assoc()):
     <td><?= $u['nome'] ?></td>
     <td><?= $u['email'] ?></td>
     <td><?= $u['data_nascimento'] ?></td>
-
     <td>
-        <a href="editar.php?id=<?= $u['id'] ?>">Editar</a> | 
+        <a href="editar.php?id=<?= $u['id'] ?>">Editar</a> |
         <a href="excluir.php?id=<?= $u['id'] ?>" onclick="return confirm('Excluir?')">Excluir</a>
     </td>
 </tr>

@@ -18,8 +18,6 @@ if (!isset($_POST['id'])) {
 exit();
 }
 
-
-
 // SALVAR ALTERAÇÃO
 
 $id    = $_POST['id'];
