@@ -19,7 +19,7 @@ if (!isset($_POST['id'])) {
 </form>
 
 <?php
-exit(); /
+exit(); 
 }
 
 //salvamento
