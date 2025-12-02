@@ -6,7 +6,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $usuario = $_POST['usuario']; // Armazena o usuário
     $senha = $_POST['senha']; 
 
-    // Valida usuário e senha
+    // Validação
     if ($usuario === "admin" && $senha === "123") {
         $_SESSION['logado'] = true; 
         header("Location: index.php"); 
