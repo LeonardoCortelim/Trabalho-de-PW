@@ -1,18 +1,18 @@
 <?php
-session_start();
+session_start(); 
 
-// Se o formulário foi enviado
+// Verifica se o formulário foi enviado
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $usuario = $_POST['usuario'];
-    $senha = $_POST['senha'];
+    $usuario = $_POST['usuario']; // Armazena o usuário
+    $senha = $_POST['senha']; 
 
-    // Usuário e senha fixos
+    // Valida usuário e senha
     if ($usuario === "admin" && $senha === "123") {
-        $_SESSION['logado'] = true;
+        $_SESSION['logado'] = true; 
         header("Location: index.php"); 
-        exit;
+        exit; 
     } else {
-        $erro = "Usuário ou senha incorretos!";
+        $erro = "Usuário ou senha incorretos!"; 
     }
 }
 ?>
@@ -35,8 +35,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     <button type="submit">Entrar</button>
 </form>
-
-<?php if (isset($erro)) echo "<p style='color:red;'>$erro</p>"; ?>
 
 </body>
 </html>

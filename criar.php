@@ -1,7 +1,7 @@
 <?php
 require_once "conexao.php";
 
-$nome  = $_POST['nome'];
+$nome  = $_POST['nome']; //Pega o nome enviado pelo formulário e guarda na variavel
 $email = $_POST['email'];
 $data  = $_POST['data_nascimento'];
 $senha = $_POST['senha'];

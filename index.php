@@ -1,26 +1,26 @@
 <link rel="stylesheet" href="style.css">
 
 <?php
-session_start();
-require_once "conexao.php";
+session_start(); 
+require_once "conexao.php"; 
 
-$USER = "admin";
-$PASS = "123";
+$USER = "admin"; 
+$PASS = "123"; 
 
-if (isset($_GET['logout'])) {
+if (isset($_GET['logout'])) { //clicou no botão de sair
     session_destroy();
     header("Location: index.php");
 }
 
 if (isset($_POST['login_user'])) {
-    if ($_POST['login_user'] == $USER && $_POST['login_pass'] == $PASS) {
+    if ($_POST['login_user'] == $USER && $_POST['login_pass'] == $PASS) { //validação de nome e senha (admin e 123).
         $_SESSION['logged'] = true;
     } else {
-        $erro_login = "Usuário ou senha incorretos!";
+        $erro_login = "Usuário ou senha incorretos!"; 
     }
 }
 
-if (!isset($_SESSION['logged'])) {
+if (!isset($_SESSION['logged'])) { //verifica se não está logado
 ?>
 <h2>Login</h2>
 
@@ -30,18 +30,18 @@ if (!isset($_SESSION['logged'])) {
     <button>Entrar</button>
 </form>
 
-<p style="color:red;"><?= $erro_login ?? '' ?></p>
-
 <?php
-exit();
+exit(); 
 }
 ?>
 
 <h2>Sistema CRUD</h2>
-<a href="?logout=1">Sair</a>
+
+<a href="?logout=1">Sair</a> 
 
 <h3>Cadastrar Usuário</h3>
 
+<!-- form enviado para criar.php -->
 <form method="POST" action="criar.php">
     <input type="text" name="nome" placeholder="Nome" required><br>
     <input type="email" name="email" placeholder="Email" required><br>
@@ -62,8 +62,8 @@ exit();
 </tr>
 
 <?php
-$lista = $conn->query("SELECT * FROM usuarios");
-while ($u = $lista->fetch_assoc()):
+$lista = $conn->query("SELECT * FROM usuarios"); 
+while ($u = $lista->fetch_assoc()): // Loop para cada usuário criar uma linha
 ?>
 <tr>
     <td><?= $u['id'] ?></td>
@@ -71,7 +71,10 @@ while ($u = $lista->fetch_assoc()):
     <td><?= $u['email'] ?></td>
     <td><?= $u['data_nascimento'] ?></td>
     <td>
+        <!-- envia ID pela URL -->
         <a href="editar.php?id=<?= $u['id'] ?>">Editar</a> |
+        
+        <!-- Confirmação para excluir-->
         <a href="excluir.php?id=<?= $u['id'] ?>" onclick="return confirm('Excluir?')">Excluir</a>
     </td>
 </tr>
